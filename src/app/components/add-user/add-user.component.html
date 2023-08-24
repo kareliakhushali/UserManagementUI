@@ -1,0 +1,122 @@
+<div class="container my-5">
+  <h1 class="mb-3">Add New User</h1>
+  <form #form="ngForm" (ngSubmit)="addUser()" novalidate>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3">
+          <label for="firstname" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="addUserRequest.firstName" required  pattern="^(?![0-9]).*" #firstname="ngModel">
+          <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="text-danger">
+            <div *ngIf="firstname.errors?.['required']">First Name is required.</div>
+            <div *ngIf="firstname.errors?.['pattern']">First Name should not start with a number.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="addUserRequest.lastName" required  pattern="^(?![0-9]).*" #lastname="ngModel">
+          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="text-danger">
+            <div *ngIf="lastname.errors?.['required']">Last Name is required.</div>
+            <div *ngIf="lastname.errors?.['pattern']">Last Name should not start with a number.</div>
+          </div>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="addUserRequest.email" required email #email="ngModel">
+
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+      </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" checked="true" class="form-check-input" name="gender" #gender="ngModel" [(ngModel)]="addUserRequest.gender" value="male" required>Male
+              <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="text-danger"></div>
+              <div *ngIf="gender.errors?.['required']">Gender is required.</div>
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="gender" #gender="ngModel" [(ngModel)]="addUserRequest.gender" value="female" required>Female
+              <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="text-danger"></div>
+              <div *ngIf="gender.errors?.['required']">Gender is required.</div>
+            </label>
+          </div>
+
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="gender" #gender="ngModel" [(ngModel)]="addUserRequest.gender" value="others" required>Others
+              <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="text-danger"></div>
+              <div *ngIf="gender.errors?.['required']">Gender is required.</div>
+            </label>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px;"></div>
+        <div class="col-md-6">
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" checked="true" class="form-check-input" name="hobbies" #hobbies="ngModel" [(ngModel)]="addUserRequest.hobbies" value="dancing" required>Dancing
+              <div *ngIf="hobbies.invalid && (hobbies.dirty || hobbies.touched)" class="text-danger"></div>
+              <div *ngIf="hobbies.errors?.['required']">hobbies is required.</div>
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="hobbies" #hobbies="ngModel" [(ngModel)]="addUserRequest.hobbies" value="singing" required>Singing
+              <div *ngIf="hobbies.invalid && (hobbies.dirty || hobbies.touched)" class="text-danger"></div>
+              <div *ngIf="hobbies.errors?.['required']">Hobbies is required.</div>
+            </label>
+          </div>
+
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="hobbies" #hobbies="ngModel" [(ngModel)]="addUserRequest.hobbies" value="travelling" required>Travelling
+              <div *ngIf="hobbies.invalid && (hobbies.dirty || hobbies.touched)" class="text-danger"></div>
+              <div *ngIf="hobbies.errors?.['required']">hobbies is required.</div>
+            </label>
+          </div>
+
+
+
+
+          <!-- <div class="form-check-inline">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" name="dancing" #dancing="ngModel" [(ngModel)]="addUserRequest.hobbies">Dancing
+      </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" name="singing" #singing="ngModel" [(ngModel)]="addUserRequest.hobbies">Singing
+            </label>
+           </div>
+           <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" name="travelling" #travelling="ngModel" [(ngModel)]="addUserRequest.hobbies">Travelling
+            </label>
+           </div> -->
+        </div>
+
+   <div style="margin-top: 20px;"></div>
+        <div class="col-md-3">
+          <label for="date" class="label float-left">Date of joining</label>
+          <input type="date" class="form-control" name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="addUserRequest.dateOfBirth" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Image Url</label>
+          <input type="text" class="form-control" name="imageUpload" [(ngModel)]="addUserRequest.ImageUpload" required>
+        </div>
+
+      </div>
+    </div>
+
+
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
+  </form>
+</div>
